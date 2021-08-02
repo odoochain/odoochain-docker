@@ -44,7 +44,6 @@ The following OCA addons are included by default in this image (in v14.0):
   - repo: server-brand
     modules:
      - disable_odoo_online
-     - portal_odoo_debranding
      - remove_odoo_enterprise
   - repo: server-ux
     modules:

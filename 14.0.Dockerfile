@@ -72,7 +72,6 @@ RUN set -x; \
            /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/server-brand.git /tmp/oca-repos/server-brand &&\
         mv /tmp/oca-repos/server-brand/disable_odoo_online \
-           /tmp/oca-repos/server-brand/portal_odoo_debranding \
            /tmp/oca-repos/server-brand/remove_odoo_enterprise \
            /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/server-tools.git /tmp/oca-repos/server-tools &&\
