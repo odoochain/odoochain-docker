@@ -58,7 +58,7 @@ RUN set -x; \
            /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/partner-contact.git /tmp/oca-repos/partner-contact &&\
         mv /tmp/oca-repos/partner-contact/partner_disable_gravatar \
-        mv /tmp/oca-repos/partner-contact/partner_firstname \
+           /tmp/oca-repos/partner-contact/partner_firstname \
            /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/project.git /tmp/oca-repos/project &&\
         mv /tmp/oca-repos/project/project_category \
