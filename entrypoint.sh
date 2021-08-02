@@ -16,7 +16,7 @@ function check_config() {
     if ! grep -q -E "^\s*\b${param}\b\s*=" /opt/odoo/etc/odoo.conf ; then
         DB_ARGS+=("--${param}")
         DB_ARGS+=("${value}")
-    else 
+    else
         value=`grep "^\s*\b${param}\b\s*=" /opt/odoo/etc/odoo.conf | cut -d "=" -f 2 | xargs`
     fi;
 }
@@ -31,11 +31,11 @@ check_config "db_password" "$PASSWORD"
 export PGPASSWORD=$value
 
 if ! psql -l | grep $PGDATABASE; then
-	echo "Database $PGDATABASE does not exist"
-	DB_ARGS+=("--load-language")
-	DB_ARGS+=("fr_FR")
+  	echo "Database $PGDATABASE does not exist"
+  	DB_ARGS+=("--load-language")
+  	DB_ARGS+=("fr_FR")
 else
-        psql -qc 'CREATE EXTENSION IF NOT EXISTS unaccent'
+    psql -qc 'CREATE EXTENSION IF NOT EXISTS unaccent'
 fi
 
 case "$1" in
