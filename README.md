@@ -6,7 +6,7 @@ These docker images are now maintained on [Le Filament GitLab server](https://so
 
 This Docker is inspired from the ones from [Odoo](https://github.com/odoo/docker), [Tecnativa](https://github.com/Tecnativa/doodba) and [Elico Corporation](https://github.com/Elico-Corp/odoo-docker).
 
-It creates a functional Odoo Docker of limited size (< 400 MB), including Odoo 10.0 or 12.0 from [OCA/OCB](https://github.com/oca/ocb), and also a few addons from [OCA](https://github.com/oca).
+It creates a functional Odoo Docker of limited size (< 400 MB), including Odoo 10.0 or 12.0 or 14.0 from [OCA/OCB](https://github.com/oca/ocb), and also a few addons from [OCA](https://github.com/oca).
 
 In order to reduce as much as possible the size of the Docker, only French translations are kept and .git directories are removed.
 For people needing other languages than English or French, a 12.0_ml image is also provided.

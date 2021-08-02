@@ -115,12 +115,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
 
 # Metadata
-ARG VCS_REF
-ARG BUILD_DATE
-ARG VERSION
-LABEL org.label-schema.schema-version="$VERSION" \
+LABEL org.label-schema.schema-version="14.0" \
       org.label-schema.vendor=LeFilament \
       org.label-schema.license=Apache-2.0 \
-      org.label-schema.build-date="$BUILD_DATE" \
-      org.label-schema.vcs-ref="$VCS_REF" \
-      org.label-schema.vcs-url="https://github.com/lefilament/docker-odoo"
+      org.label-schema.vcs-url="https://sources.le-filament.com/lefilament/odoo_docker"

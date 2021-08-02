@@ -1,22 +1,47 @@
-image: docker:latest
+image: docker:20.10.7
 
-docker-build-master:
+docker-build-10.0:
   # Official docker image.
-  image: docker:19.03.12
+  image: docker:20.10.7
   stage: build
   services:
-    - docker:19.03.12-dind
+    - docker:20.10.7-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -f 10.0.Dockerfile -t "$CI_REGISTRY_IMAGE:10.0" .
+    - docker push "$CI_REGISTRY_IMAGE:10.0"
+  only:
+    - "10.0"
+
+docker-build-12.0:
+  # Official docker image.
+  image: docker:20.10.7
+  stage: build
+  services:
+    - docker:20.10.7-dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -f 12.0.Dockerfile -t "$CI_REGISTRY_IMAGE:12.0" .
     - docker build --pull -f 12.0_ml.Dockerfile -t "$CI_REGISTRY_IMAGE:12.0_ml" .
     - docker build --pull -f 12.0_py3.6.Dockerfile -t "$CI_REGISTRY_IMAGE:12.0_py3.6" .
-    - docker build --pull -f 14.0.Dockerfile -t "$CI_REGISTRY_IMAGE:14.0" .
     - docker push "$CI_REGISTRY_IMAGE:12.0"
     - docker push "$CI_REGISTRY_IMAGE:12.0_ml"
     - docker push "$CI_REGISTRY_IMAGE:12.0_py3.6"
+  only:
+    - "12.0"
+
+docker-build-14.0:
+  # Official docker image.
+  image: docker:20.10.7
+  stage: build
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -f 14.0.Dockerfile -t "$CI_REGISTRY_IMAGE:14.0" .
     - docker push "$CI_REGISTRY_IMAGE:14.0"
   only:
-    - master
-
+    - "14.0"
