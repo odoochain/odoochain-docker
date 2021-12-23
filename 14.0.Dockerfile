@@ -24,7 +24,7 @@ RUN set -x; \
         apt-get install -y --no-install-recommends postgresql-client &&\
         apt-get install -y --no-install-recommends ${APT_DEPS} &&\
         pip3 install -r https://raw.githubusercontent.com/OCA/OCB/14.0/requirements.txt &&\
-        pip3 install phonenumbers simplejson gevent==20.12.1 PyYAML zxcvbn &&\
+        pip3 install phonenumbers simplejson gevent==20.12.1 pdfminer.six PyYAML zxcvbn &&\
         apt-get -y purge ${APT_DEPS} &&\
         apt-get -y autoremove &&\
         rm -rf /var/lib/apt/lists/* wkhtmltox.deb
