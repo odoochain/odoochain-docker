@@ -65,6 +65,8 @@ RUN set -x; \
         mv /tmp/oca-repos/bank-statement-import/account_statement_import \
            /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
            /opt/odoo/additional_addons/ &&\
+        git clone -b 14.0 --depth 1 https://github.com/OCA/crm.git /tmp/oca-repos/crm &&\
+        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/partner-contact.git /tmp/oca-repos/partner-contact &&\
         mv /tmp/oca-repos/partner-contact/partner_disable_gravatar \
            /tmp/oca-repos/partner-contact/partner_firstname \
