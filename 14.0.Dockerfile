@@ -100,6 +100,7 @@ RUN set -x; \
         git clone -b 14.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
         mv /tmp/oca-repos/web/web_environment_ribbon \
            /tmp/oca-repos/web/web_responsive \
+           /tmp/oca-repos/web/web_no_bubble \
            /tmp/oca-repos/web/web_timeline \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\
