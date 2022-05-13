@@ -47,10 +47,9 @@ RUN set -x; \
         git clone -b 14.0 --depth 1 https://github.com/OCA/account-financial-reporting.git /tmp/oca-repos/account-financial-reporting &&\
         mv /tmp/oca-repos/account-financial-reporting/account_tax_balance /opt/odoo/additional_addons/ &&\
         git clone -b 14.0 --depth 1 https://github.com/OCA/account-financial-tools.git /tmp/oca-repos/account-financial-tools &&\
-        mv /tmp/oca-repos/account-financial-tools/account_lock_date_update /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/account-financial-tools/pull/1228)
-        git clone -b 14-add-account_move_name_sequence --depth 1 https://github.com/akretion/account-financial-tools.git /tmp/oca-repos/account-financial-tools-ak &&\
-        mv /tmp/oca-repos/account-financial-tools-ak/account_move_name_sequence /opt/odoo/additional_addons/ &&\
+        mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
+           /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
+           /opt/odoo/additional_addons/ &&\
         # Until migrated to OCA (https://github.com/OCA/account-financial-tools/pull/1304)
         git clone -b 14.0-add-partner_account_reconciliable --depth 1 https://github.com/lefilament/account-financial-tools.git /tmp/oca-repos/account-financial-tools-lf &&\
         mv /tmp/oca-repos/account-financial-tools-lf/partner_account_reconciliable /opt/odoo/additional_addons/ &&\
