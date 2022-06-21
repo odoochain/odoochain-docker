@@ -104,6 +104,8 @@ RUN set -x; \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\
         find /opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete &&\
+        # Install Le Filament default dependency
+        git clone -b 14.0 --depth 1 https://sources.le-filament.com/lefilament/remove_login_links.git /opt/odoo/private_addons/ &&\
         chown -R odoo:odoo /opt/odoo
 
 # Copy entrypoint script and Odoo configuration file
