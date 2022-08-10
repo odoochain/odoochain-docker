@@ -1,7 +1,16 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.10-slim-bullseye AS builder
+RUN set -x; \
+        apt-get update &&\
+        apt-get install -y --no-install-recommends build-essential libldap2-dev libpq-dev libsasl2-dev &&\
+        pip install wheel &&\
+        pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
+        pip wheel --wheel-dir=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
+
+
+FROM python:3.10-slim-bullseye AS final
 MAINTAINER Le Filament <https://le-filament.com>
 
-ENV APT_DEPS='build-essential libldap2-dev libpq-dev libsasl2-dev' \
+ENV APT_DEPS='' \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PGDATABASE=odoo
@@ -22,13 +31,13 @@ RUN set -x; \
         apt-get update &&\
         apt-get install -y --no-install-recommends ./wkhtmltox.deb &&\
         apt-get install -y --no-install-recommends postgresql-client &&\
-        apt-get install -y --no-install-recommends ${APT_DEPS} &&\
-        # pip3 install -r https://raw.githubusercontent.com/OCA/OCB/16.0/requirements.txt &&\
-        pip3 install -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
-        pip3 install phonenumbers simplejson openupgradelib pdfminer.six PyYAML zxcvbn &&\
         apt-get -y purge ${APT_DEPS} &&\
         apt-get -y autoremove &&\
         rm -rf /var/lib/apt/lists/* wkhtmltox.deb
+
+COPY --from=builder /svc /svc
+RUN pip3 install --no-index --find-links=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
+        pip3 install --no-index --find-links=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
 
 # Add Git Known Hosts
 COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
