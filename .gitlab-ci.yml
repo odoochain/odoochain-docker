@@ -1,11 +1,11 @@
-image: docker:20.10.7
+image: docker:20.10.17
 
 docker-build-10.0:
   # Official docker image.
-  image: docker:20.10.7
+  image: docker:20.10.17
   stage: build
   services:
-    - docker:20.10.7-dind
+    - docker:20.10.17-dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
@@ -16,10 +16,10 @@ docker-build-10.0:
 
 docker-build-12.0:
   # Official docker image.
-  image: docker:20.10.7
+  image: docker:20.10.17
   stage: build
   services:
-    - docker:20.10.7-dind
+    - docker:20.10.17-dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
@@ -34,10 +34,10 @@ docker-build-12.0:
 
 docker-build-14.0:
   # Official docker image.
-  image: docker:20.10.7
+  image: docker:20.10.17
   stage: build
   services:
-    - docker:20.10.7-dind
+    - docker:20.10.17-dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
@@ -45,3 +45,17 @@ docker-build-14.0:
     - docker push "$CI_REGISTRY_IMAGE:14.0"
   only:
     - "14.0"
+
+docker-build-16.0:
+  # Official docker image.
+  image: docker:20.10.17
+  stage: build
+  services:
+    - docker:20.10.17-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -f 16.0.Dockerfile -t "$CI_REGISTRY_IMAGE:16.0" .
+    - docker push "$CI_REGISTRY_IMAGE:16.0"
+  only:
+    - "16.0"
