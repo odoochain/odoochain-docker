@@ -4,9 +4,8 @@ include:
 
 container_scanning:
   variables:
-    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:16.0
-  only:
-    - "16.0"
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    DOCKERFILE_PATH: $CI_COMMIT_BRANCH.Dockerfile
 
 docker-build-10.0:
   # Official docker image.
