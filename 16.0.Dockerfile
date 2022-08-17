@@ -8,8 +8,6 @@ RUN set -x; \
 
 
 FROM python:3.10-slim-bullseye AS final
-MAINTAINER Le Filament <https://le-filament.com>
-
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PGDATABASE=odoo

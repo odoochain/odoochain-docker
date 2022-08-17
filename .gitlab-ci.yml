@@ -59,3 +59,17 @@ docker-build-16.0:
     - docker push "$CI_REGISTRY_IMAGE:16.0"
   only:
     - "16.0"
+
+docker-build-16.0-alpine:
+  # Official docker image.
+  image: docker:20.10.17
+  stage: build
+  services:
+    - docker:20.10.17-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -f 16.0-alpine.Dockerfile -t "$CI_REGISTRY_IMAGE:16.0-alpine" .
+    - docker push "$CI_REGISTRY_IMAGE:16.0-alpine"
+  only:
+    - "16.0"
