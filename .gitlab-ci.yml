@@ -1,4 +1,12 @@
 image: docker:20.10.17
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+container_scanning:
+  variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:16.0
+  only:
+    - "16.0"
 
 docker-build-10.0:
   # Official docker image.
