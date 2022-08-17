@@ -10,8 +10,7 @@ RUN set -x; \
 FROM python:3.10-slim-bullseye AS final
 MAINTAINER Le Filament <https://le-filament.com>
 
-ENV APT_DEPS='' \
-    LANG=C.UTF-8 \
+ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PGDATABASE=odoo
 
@@ -21,7 +20,6 @@ RUN set -x; \
             curl \
             git \
             gnupg \
-            # npm \
             openssh-client \
             xmlsec1 &&\
         echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' >> /etc/apt/sources.list.d/postgresql.list &&\
@@ -31,7 +29,6 @@ RUN set -x; \
         apt-get update &&\
         apt-get install -y --no-install-recommends ./wkhtmltox.deb &&\
         apt-get install -y --no-install-recommends postgresql-client &&\
-        apt-get -y purge ${APT_DEPS} &&\
         apt-get -y autoremove &&\
         rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
@@ -44,7 +41,7 @@ COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
 
 # Install Odoo and remove not French translations and .git directory to limit amount of data used by container
 RUN set -x; \
-        useradd -l --create-home --home-dir /opt/odoo --no-log-init odoo &&\
+        useradd --create-home --home-dir /opt/odoo --no-log-init odoo &&\
         /bin/bash -c "mkdir -p /opt/odoo/{etc,odoo,additional_addons,private_addons,data,private}" &&\
         # git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /opt/odoo/odoo &&\
         git clone -b master --depth 1 https://github.com/odoo/odoo.git /opt/odoo/odoo &&\
