@@ -16,10 +16,14 @@ ENV LANG=C.UTF-8 \
 RUN set -x; \
         apk add --no-cache \
             bash \
+           	fontconfig \
+            freetype \
             git \
             libjpeg-turbo \
             libsass \
             libstdc++ \
+            libx11 \
+           	libxrender \
             postgresql-client
 
 # Copy wkhtmltopdf files from docker-wkhtmltopdf image
