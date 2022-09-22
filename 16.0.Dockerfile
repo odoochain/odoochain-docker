@@ -41,8 +41,7 @@ COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
 RUN set -x; \
         useradd --create-home --home-dir /opt/odoo --no-log-init odoo &&\
         /bin/bash -c "mkdir -p /opt/odoo/{etc,odoo,additional_addons,private_addons,data,private}" &&\
-        # git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /opt/odoo/odoo &&\
-        git clone -b master --depth 1 https://github.com/odoo/odoo.git /opt/odoo/odoo &&\
+        git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /opt/odoo/odoo &&\
         rm -rf /opt/odoo/odoo/.git &&\
         find /opt/odoo/odoo/addons/*/i18n/ /opt/odoo/odoo/odoo/addons/base/i18n/ -type f -not -name 'fr.po' -delete &&\
         chown -R odoo:odoo /opt/odoo
