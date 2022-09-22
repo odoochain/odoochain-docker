@@ -3,7 +3,7 @@ RUN set -x; \
         apt-get update &&\
         apt-get install -y --no-install-recommends build-essential libldap2-dev libpq-dev libsasl2-dev &&\
         pip install wheel &&\
-        pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
+        pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/oca/OCB/16.0/requirements.txt &&\
         pip wheel --wheel-dir=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
 
 
@@ -31,7 +31,7 @@ RUN set -x; \
         rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
 COPY --from=builder /svc /svc
-RUN pip3 install --no-index --find-links=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
+RUN pip3 install --no-index --find-links=/svc/wheels -r https://raw.githubusercontent.com/oca/OCB/16.0/requirements.txt &&\
         pip3 install --no-index --find-links=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
 
 # Add Git Known Hosts

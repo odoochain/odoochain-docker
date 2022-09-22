@@ -1,11 +1,12 @@
 FROM surnet/alpine-wkhtmltopdf:3.16.0-0.12.6-small as wkhtmltopdf
 
 FROM python:3.10-alpine AS builder
-RUN apk add --no-cache python3-dev libffi-dev gcc musl-dev make postgresql-dev openldap-dev cyrus-sasl-dev jpeg-dev zlib-dev libsass-dev g++
-RUN pip install wheel
-RUN echo 'INPUT ( libldap.so )' > /usr/lib/libldap_r.so
-RUN pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt
-RUN pip wheel --wheel-dir=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
+RUN set -x; \
+        apk add --no-cache python3-dev libffi-dev gcc musl-dev make postgresql-dev openldap-dev cyrus-sasl-dev jpeg-dev zlib-dev libsass-dev g++ &&\
+        pip install wheel &&\
+        echo 'INPUT ( libldap.so )' > /usr/lib/libldap_r.so &&\
+        pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/odoo/odoo/master/requirements.txt &&\
+        pip wheel --wheel-dir=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
 
 
 FROM python:3.10-alpine AS final
