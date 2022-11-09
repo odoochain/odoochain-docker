@@ -46,13 +46,13 @@ RUN git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /newroot/opt/odoo
     && find /newroot/opt/odoo/odoo/addons/*/i18n/ /newroot/opt/odoo/odoo/odoo/addons/base/i18n/ -type f -not -name 'fr.po' -delete
 
 ## Add Git known hosts.
-#COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
-#
+COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
+
 ## Install Odoo OCA and Le Filament default dependencies.
-#RUN mkdir -p \
-#        /tmp/oca-repos/ \
-#        /newroot/opt/odoo/additional_addons \
-#        /newroot/opt/odoo/private_addons \
+RUN mkdir -p \
+        /tmp/oca-repos/ \
+        /newroot/opt/odoo/additional_addons \
+        /newroot/opt/odoo/private_addons \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-financial-reporting.git \
 #        /tmp/oca-repos/account-financial-reporting \
@@ -86,21 +86,21 @@ RUN git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /newroot/opt/odoo
 #        /tmp/oca-repos/crm \
 #    && mv /tmp/oca-repos/crm/crm_stage_probability \
 #        /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/partner-contact.git \
-#        /tmp/oca-repos/partner-contact \
-#    && mv /tmp/oca-repos/partner-contact/partner_disable_gravatar \
-#        /tmp/oca-repos/partner-contact/partner_firstname \
-#        /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/project.git \
-#        /tmp/oca-repos/project \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/partner-contact.git \
+        /tmp/oca-repos/partner-contact \
+    && mv /tmp/oca-repos/partner-contact/partner_disable_gravatar \
+        /tmp/oca-repos/partner-contact/partner_firstname \
+        /newroot/opt/odoo/additional_addons/ \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/project.git \
+        /tmp/oca-repos/project \
 #    && mv /tmp/oca-repos/project/project_category \
 #        /tmp/oca-repos/project/project_status \
 #        /tmp/oca-repos/project/project_task_default_stage \
-#        /tmp/oca-repos/project/project_template \
+    && mv /tmp/oca-repos/project/project_template \
 #        /tmp/oca-repos/project/project_timeline \
-#        /newroot/opt/odoo/additional_addons/ \
+        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/server-auth.git \
 #        /tmp/oca-repos/server-auth \
@@ -112,19 +112,19 @@ RUN git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /newroot/opt/odoo
 #    && mv /tmp/oca-repos/server-brand/disable_odoo_online \
 #        /tmp/oca-repos/server-brand/remove_odoo_enterprise \
 #        /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/server-tools.git \
-#        /tmp/oca-repos/server-tools \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/server-tools.git \
+        /tmp/oca-repos/server-tools \
 #    && mv /tmp/oca-repos/server-tools/base_search_fuzzy \
-#        /tmp/oca-repos/server-tools/module_change_auto_install \
-#        /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/server-ux.git \
-#        /tmp/oca-repos/server-ux \
+    && mv /tmp/oca-repos/server-tools/module_change_auto_install \
+        /newroot/opt/odoo/additional_addons/ \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/server-ux.git \
+        /tmp/oca-repos/server-ux \
 #    && mv /tmp/oca-repos/server-ux/base_technical_features \
-#        /tmp/oca-repos/server-ux/date_range \
+    && mv /tmp/oca-repos/server-ux/date_range \
 #        /tmp/oca-repos/server-ux/mass_editing \
-#        /newroot/opt/odoo/additional_addons/ \
+        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/social.git \
 #        /tmp/oca-repos/social \
@@ -132,16 +132,16 @@ RUN git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /newroot/opt/odoo
 #        /tmp/oca-repos/social/mail_debrand \
 #        /tmp/oca-repos/social/mail_tracking \
 #        /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/web.git \
-#        /tmp/oca-repos/web \
-#    && mv /tmp/oca-repos/web/web_environment_ribbon \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/web.git \
+        /tmp/oca-repos/web \
+    && mv /tmp/oca-repos/web/web_environment_ribbon \
 #        /tmp/oca-repos/web/web_responsive \
 #        /tmp/oca-repos/web/web_no_bubble \
 #        /tmp/oca-repos/web/web_timeline \
-#        /newroot/opt/odoo/additional_addons/ \
-#    && rm -rf /tmp/oca-repos/ \
-#    && find /newroot/opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete \
+        /newroot/opt/odoo/additional_addons/ \
+    && rm -rf /tmp/oca-repos/ \
+    && find /newroot/opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete \
 #    && git clone -b 16.0 --depth 1 \
 #        https://sources.le-filament.com/lefilament/remove_login_links.git \
 #        /newroot/opt/odoo/private_addons/remove_login_links \
