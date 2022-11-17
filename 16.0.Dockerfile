@@ -49,8 +49,8 @@ RUN set -x; \
 # Install Odoo OCA default dependencies - Commented modules do not exist yet
 RUN set -x; \
         mkdir -p /tmp/oca-repos/ &&\
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-reporting.git /tmp/oca-repos/account-financial-reporting &&\
-#        mv /tmp/oca-repos/account-financial-reporting/account_tax_balance /opt/odoo/additional_addons/ &&\
+        git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-reporting.git /tmp/oca-repos/account-financial-reporting &&\
+        mv /tmp/oca-repos/account-financial-reporting/account_tax_balance /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-tools.git /tmp/oca-repos/account-financial-tools &&\
 #        mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
 #           /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
@@ -75,8 +75,8 @@ RUN set -x; \
         git clone -b 16.0 --depth 1 https://github.com/OCA/project.git /tmp/oca-repos/project &&\
 #        mv /tmp/oca-repos/project/project_category \
 #           /tmp/oca-repos/project/project_status \
-#           /tmp/oca-repos/project/project_task_default_stage \
-        mv /tmp/oca-repos/project/project_template \
+        mv /tmp/oca-repos/project/project_task_default_stage \
+            /tmp/oca-repos/project/project_template \
 #           /tmp/oca-repos/project/project_timeline \
            /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/server-auth.git /tmp/oca-repos/server-auth &&\
@@ -91,8 +91,8 @@ RUN set -x; \
         mv /tmp/oca-repos/server-tools/module_change_auto_install \
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/server-ux.git /tmp/oca-repos/server-ux &&\
-#        mv /tmp/oca-repos/server-ux/base_technical_features \
-        mv   /tmp/oca-repos/server-ux/date_range \
+        mv /tmp/oca-repos/server-ux/base_technical_features \
+            /tmp/oca-repos/server-ux/date_range \
 #           /tmp/oca-repos/server-ux/mass_editing \
            /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/social.git /tmp/oca-repos/social &&\

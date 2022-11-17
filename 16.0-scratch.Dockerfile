@@ -53,11 +53,11 @@ RUN mkdir -p \
         /tmp/oca-repos/ \
         /newroot/opt/odoo/additional_addons \
         /newroot/opt/odoo/private_addons \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/account-financial-reporting.git \
-#        /tmp/oca-repos/account-financial-reporting \
-#    && mv /tmp/oca-repos/account-financial-reporting/account_tax_balance \
-#        /newroot/opt/odoo/additional_addons/ \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/account-financial-reporting.git \
+        /tmp/oca-repos/account-financial-reporting \
+    && mv /tmp/oca-repos/account-financial-reporting/account_tax_balance \
+        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-financial-tools.git \
 #        /tmp/oca-repos/account-financial-tools \
@@ -97,8 +97,8 @@ RUN mkdir -p \
         /tmp/oca-repos/project \
 #    && mv /tmp/oca-repos/project/project_category \
 #        /tmp/oca-repos/project/project_status \
-#        /tmp/oca-repos/project/project_task_default_stage \
-    && mv /tmp/oca-repos/project/project_template \
+     && mv /tmp/oca-repos/project/project_task_default_stage \
+        /tmp/oca-repos/project/project_template \
 #        /tmp/oca-repos/project/project_timeline \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
@@ -121,8 +121,8 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/server-ux.git \
         /tmp/oca-repos/server-ux \
-#    && mv /tmp/oca-repos/server-ux/base_technical_features \
-    && mv /tmp/oca-repos/server-ux/date_range \
+    && mv /tmp/oca-repos/server-ux/base_technical_features \
+        /tmp/oca-repos/server-ux/date_range \
 #        /tmp/oca-repos/server-ux/mass_editing \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
