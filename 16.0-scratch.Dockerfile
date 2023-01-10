@@ -58,13 +58,13 @@ RUN mkdir -p \
         /tmp/oca-repos/account-financial-reporting \
     && mv /tmp/oca-repos/account-financial-reporting/account_tax_balance \
         /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/account-financial-tools.git \
-#        /tmp/oca-repos/account-financial-tools \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/account-financial-tools.git \
+        /tmp/oca-repos/account-financial-tools \
 #    && mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
-#        /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
+    && mv /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #        /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
-#        /newroot/opt/odoo/additional_addons/ \
+        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-invoicing.git \
 #        /tmp/oca-repos/account-invoicing \
