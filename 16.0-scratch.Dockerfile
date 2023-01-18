@@ -99,7 +99,7 @@ RUN mkdir -p \
         /tmp/oca-repos/l10n-france \
     && mv /tmp/oca-repos/l10n-france/l10n_fr_siret \
        /tmp/oca-repos/l10n-france/l10n_fr_siret_lookup \
-       /newroot/opt/odoo/additional_addons/ &&\
+       /newroot/opt/odoo/additional_addons/ \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/partner-contact.git \
         /tmp/oca-repos/partner-contact \
@@ -109,7 +109,7 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/project.git \
         /tmp/oca-repos/project \
-     && mv /tmp/oca-repos/project/project_task_default_stage \
+    && mv /tmp/oca-repos/project/project_task_default_stage \
         /tmp/oca-repos/project/project_template \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
