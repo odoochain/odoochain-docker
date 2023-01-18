@@ -38,7 +38,7 @@ RUN set -x; \
 
 COPY --from=builder /svc /svc
 RUN pip3 install --no-index --find-links=/svc/wheels -r https://raw.githubusercontent.com/oca/OCB/16.0/requirements.txt &&\
-        pip3 install --no-index --find-links=/svc/wheels phonenumbers simplejson openupgradelib PyYAML
+        pip3 install -U --no-index --find-links=/svc/wheels astor openupgradelib phonenumbers python-stdnum>=1.18 PyYAML zxcvbn
 
 # Add Git Known Hosts
 COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
