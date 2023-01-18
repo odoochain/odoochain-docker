@@ -151,7 +151,7 @@ RUN mkdir -p \
         /tmp/oca-repos/web/web_theme_classic \
         /newroot/opt/odoo/additional_addons/ \
     && rm -rf /tmp/oca-repos/ \
-    && find /newroot/opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete
+    && find /newroot/opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete \
     && git clone -b 16.0 --depth 1 \
         https://sources.le-filament.com/lefilament/remove_login_links.git \
         /newroot/opt/odoo/private_addons/remove_login_links \
