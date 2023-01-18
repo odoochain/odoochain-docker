@@ -117,8 +117,8 @@ RUN set -x; \
         mv /tmp/oca-repos/web/web_environment_ribbon \
 #           /tmp/oca-repos/web/web_responsive \
 #           /tmp/oca-repos/web/web_no_bubble \
-           /tmp/oca-repos/web_refresher \
-           /tmp/oca-repos/web_theme_classic \
+           /tmp/oca-repos/web/web_refresher \
+           /tmp/oca-repos/web/web_theme_classic \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\
         find /opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete &&\
