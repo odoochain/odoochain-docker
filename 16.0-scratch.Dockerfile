@@ -54,31 +54,39 @@ RUN mkdir -p \
         /newroot/opt/odoo/additional_addons \
         /newroot/opt/odoo/private_addons \
     && git clone -b 16.0 --depth 1 \
-        https://github.com/OCA/account-financial-reporting.git \
-        /tmp/oca-repos/account-financial-reporting \
-    && mv /tmp/oca-repos/account-financial-reporting/account_tax_balance \
-        /newroot/opt/odoo/additional_addons/ \
-    && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/account-financial-tools.git \
         /tmp/oca-repos/account-financial-tools \
-#    && mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
+#    && mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \ # https://github.com/OCA/account-financial-tools/pull/1526
     && mv /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #        /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
+        /tmp/oca-repos/account-financial-tools/account_usability \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-invoicing.git \
 #        /tmp/oca-repos/account-invoicing \
 #    && mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #        /newroot/opt/odoo/additional_addons/ \
+    # Until migrated to OCA (https://github.com/OCA/account-reconcile/pull/500)
+     && git clone -b 16.0-add-account_reconcile_oca --depth 1 \
+        https://github.com/tegin/account-reconcile.git \
+        /tmp/oca-repos/account-reconcile \
+     && mv /tmp/oca-repos/account-reconcile/account_reconcile_oca \
+        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-reconcile.git \
 #        /tmp/oca-repos/account-reconcile \
-#    && mv /tmp/oca-repos/account-reconcile/account_reconciliation_widget \
-#        /newroot/opt/odoo/additional_addons/ \
+    # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/535)
+     && git clone -b 16.0-mig-account_statement_import --depth 1 \
+        https://github.com/sonhd91/bank-statement-import.git \
+        /tmp/oca-repos/bank-statement-import \
+     && mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
+         /tmp/oca-repos/bank-statement-import/account_statement_import_file \
+         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/bank-statement-import.git \
 #        /tmp/oca-repos/bank-statement-import \
-#    && mv /tmp/oca-repos/bank-statement-import/account_statement_import \
+#    && mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
+#        /tmp/oca-repos/bank-statement-import/account_statement_import_file \
 #        /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
 #        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
@@ -86,6 +94,12 @@ RUN mkdir -p \
 #        /tmp/oca-repos/crm \
 #    && mv /tmp/oca-repos/crm/crm_stage_probability \
 #        /newroot/opt/odoo/additional_addons/ \
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/l10n-france.git \
+        /tmp/oca-repos/l10n-france \
+    && mv /tmp/oca-repos/l10n-france/l10n_fr_siret \
+       /tmp/oca-repos/l10n-france/l10n_fr_siret_lookup \
+       /newroot/opt/odoo/additional_addons/ &&\
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/partner-contact.git \
         /tmp/oca-repos/partner-contact \
@@ -95,11 +109,8 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/project.git \
         /tmp/oca-repos/project \
-#    && mv /tmp/oca-repos/project/project_category \
-#        /tmp/oca-repos/project/project_status \
      && mv /tmp/oca-repos/project/project_task_default_stage \
         /tmp/oca-repos/project/project_template \
-#        /tmp/oca-repos/project/project_timeline \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/server-auth.git \
@@ -115,22 +126,20 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/server-tools.git \
         /tmp/oca-repos/server-tools \
-#    && mv /tmp/oca-repos/server-tools/base_search_fuzzy \
-    && mv /tmp/oca-repos/server-tools/module_change_auto_install \
+    && mv /tmp/oca-repos/server-tools/base_view_inheritance_extension \
+        /tmp/oca-repos/server-tools/module_change_auto_install \
         /newroot/opt/odoo/additional_addons/ \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/server-ux.git \
         /tmp/oca-repos/server-ux \
-    && mv /tmp/oca-repos/server-ux/base_technical_features \
-        /tmp/oca-repos/server-ux/date_range \
-#        /tmp/oca-repos/server-ux/mass_editing \
+    && mv /tmp/oca-repos/server-ux/server_action_mass_edit \
         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/social.git \
 #        /tmp/oca-repos/social \
 #    && mv /tmp/oca-repos/social/base_search_mail_content \
-#        /tmp/oca-repos/social/mail_debrand \
-#        /tmp/oca-repos/social/mail_tracking \
+#        /tmp/oca-repos/social/mail_debrand \ # https://github.com/OCA/social/pull/1021
+#        /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1029
 #        /newroot/opt/odoo/additional_addons/ \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/web.git \
@@ -138,22 +147,30 @@ RUN mkdir -p \
     && mv /tmp/oca-repos/web/web_environment_ribbon \
 #        /tmp/oca-repos/web/web_responsive \
 #        /tmp/oca-repos/web/web_no_bubble \
-#        /tmp/oca-repos/web/web_timeline \
+        /tmp/oca-repos/web/web_refresher \
+        /tmp/oca-repos/web/web_theme_classic \
         /newroot/opt/odoo/additional_addons/ \
     && rm -rf /tmp/oca-repos/ \
     && find /newroot/opt/odoo/additional_addons/*/i18n/ -type f -not -name 'fr.po' -delete
-#    && git clone -b 16.0 --depth 1 \
-#        https://sources.le-filament.com/lefilament/remove_login_links.git \
-#        /newroot/opt/odoo/private_addons/remove_login_links \
-#    && git clone -b 16.0 --depth 1 \
-#        https://sources.le-filament.com/lefilament/lefilament_release_agent.git \
-#        /newroot/opt/odoo/private_addons/lefilament_release_agent
+    && git clone -b 16.0 --depth 1 \
+        https://sources.le-filament.com/lefilament/remove_login_links.git \
+        /newroot/opt/odoo/private_addons/remove_login_links \
+    && git clone -b 16.0 --depth 1 \
+        https://sources.le-filament.com/lefilament/lefilament_release_agent.git \
+        /newroot/opt/odoo/private_addons/lefilament_release_agent
 
 # Fix a ldap library bug.
 RUN echo -n "INPUT ( libldap.so )" > /usr/lib/libldap_r.so
 
 # Install Python requirements.
-RUN pip install --requirement /newroot/opt/odoo/odoo/requirements.txt
+RUN pip install --requirement /newroot/opt/odoo/odoo/requirements.txt \
+    # astor required by base_view_inheritance_extension
+    # openupgradelib required for OCA module migration from one version to another
+    # phonenumbers required by phone_validation
+    # python-stdnum>=1.18 required by l10n_fr_siret and l10n_fr_siret_lookup
+    # PyYAML required by custom scripts for adding modules (https://sources.le-filament.com/lefilament/ansible-roles/docker_odoo/-/tree/master/templates)
+    # zxcvbn required by password_security
+    pip install astor openupgradelib phonenumbers python-stdnum>=1.18 PyYAML zxcvbn
 
 # Only copy libraries of needed binaries to new root.
 RUN ls \
