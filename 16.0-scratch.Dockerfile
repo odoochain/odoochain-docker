@@ -142,13 +142,12 @@ RUN mkdir -p \
         /tmp/oca-repos/server-ux \
     && mv /tmp/oca-repos/server-ux/server_action_mass_edit \
         /newroot/opt/odoo/additional_addons/ \
-#    && git clone -b 16.0 --depth 1 \
-#        https://github.com/OCA/social.git \
-#        /tmp/oca-repos/social \
-#    && mv /tmp/oca-repos/social/base_search_mail_content \
-#        /tmp/oca-repos/social/mail_debrand \ # https://github.com/OCA/social/pull/1021
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/OCA/social.git \
+        /tmp/oca-repos/social \
+    && mv /tmp/oca-repos/social/mail_debrand \
 #        /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1029
-#        /newroot/opt/odoo/additional_addons/ \
+        /newroot/opt/odoo/additional_addons/ \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/web.git \
         /tmp/oca-repos/web \
