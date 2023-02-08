@@ -123,6 +123,14 @@ RUN mkdir -p \
 #    && mv /tmp/oca-repos/server-brand/disable_odoo_online \
 #        /tmp/oca-repos/server-brand/remove_odoo_enterprise \
 #        /newroot/opt/odoo/additional_addons/ \
+    # Until migrated to OCA (https://github.com/OCA/server-brand/pulls)
+    && git clone -b 16.0 --depth 1 \
+        https://github.com/lefilament/server-brand.git \
+        /tmp/oca-repos/server-brand \
+    && mv /tmp/oca-repos/server-brand/disable_odoo_online \
+        /tmp/oca-repos/server-brand/portal_odoo_debranding \
+        /tmp/oca-repos/server-brand/remove_odoo_enterprise \
+        /newroot/opt/odoo/additional_addons/ &&\
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/server-tools.git \
         /tmp/oca-repos/server-tools \
