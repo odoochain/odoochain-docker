@@ -98,12 +98,7 @@ RUN set -x; \
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/server-auth.git /tmp/oca-repos/server-auth &&\
 #        mv /tmp/oca-repos/server-auth/password_security \
 #           /opt/odoo/additional_addons/ &&\
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/server-brand.git /tmp/oca-repos/server-brand &&\
-#        mv /tmp/oca-repos/server-brand/disable_odoo_online \
-#           /tmp/oca-repos/server-brand/remove_odoo_enterprise \
-#           /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/server-brand/pulls)
-        git clone -b 16.0 --depth 1 https://github.com/lefilament/server-brand.git /tmp/oca-repos/server-brand &&\
+        git clone -b 16.0 --depth 1 https://github.com/OCA/server-brand.git /tmp/oca-repos/server-brand &&\
         mv /tmp/oca-repos/server-brand/disable_odoo_online \
            /tmp/oca-repos/server-brand/portal_odoo_debranding \
            /tmp/oca-repos/server-brand/remove_odoo_enterprise \
@@ -116,7 +111,7 @@ RUN set -x; \
         mv /tmp/oca-repos/server-ux/server_action_mass_edit \
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/social.git /tmp/oca-repos/social &&\
-        mv /tmp/oca-repos/social/mail_debrand \ 
+        mv /tmp/oca-repos/social/mail_debrand \
 #           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1029
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
