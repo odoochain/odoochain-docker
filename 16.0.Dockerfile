@@ -65,16 +65,19 @@ RUN set -x; \
 #        mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #           /opt/odoo/additional_addons/ &&\
         # Until migrated to OCA (https://github.com/OCA/account-reconcile/pull/500)
-        git clone -b 16.0-add-account_reconcile_oca --depth 1 https://github.com/tegin/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
-        mv /tmp/oca-repos/account-reconcile/account_reconcile_oca \
+        git clone -b 16.0-add-account_reconcile_oca --depth 1 https://github.com/tegin/account-reconcile.git /tmp/oca-repos/account-reconcile-tegin &&\
+        mv /tmp/oca-repos/account-reconcile-tegin/account_reconcile_oca \
            /opt/odoo/additional_addons/ &&\
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
-#        mv /tmp/oca-repos/account-reconcile/account_reconciliation_widget \
-#           /opt/odoo/additional_addons/ &&\
+        git clone -b 16.0 --depth 1 https://github.com/OCA/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
+        mv /tmp/oca-repos/account-reconcile/account_statement_base \
+           /opt/odoo/additional_addons/ &&\
+        # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/550)
+        git clone -b 16-mig-account_statement_import_base --depth 1 https://github.com/akretion/bank-statement-import.git /tmp/oca-repos/bank-statement-import-ak &&\
+        mv /tmp/oca-repos/bank-statement-import-ak/account_statement_import_base \
+           /opt/odoo/additional_addons/ &&\
         # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/535)
-        git clone -b 16.0-mig-account_statement_import --depth 1 https://github.com/sonhd91/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
-        mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
-           /tmp/oca-repos/bank-statement-import/account_statement_import_file \
+        git clone -b 16.0-mig-account_statement_import --depth 1 https://github.com/sonhd91/bank-statement-import.git /tmp/oca-repos/bank-statement-import-sonhd91 &&\
+        mv /tmp/oca-repos/bank-statement-import-sonhd91/account_statement_import_file \
            /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
 #        mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
