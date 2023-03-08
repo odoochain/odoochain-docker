@@ -56,7 +56,7 @@ RUN set -x; \
 RUN set -x; \
         mkdir -p /tmp/oca-repos/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-tools.git /tmp/oca-repos/account-financial-tools &&\
-#        mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \ # https://github.com/OCA/account-financial-tools/pull/1526
+        mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
         mv /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #           /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
            /tmp/oca-repos/account-financial-tools/account_usability \
@@ -81,8 +81,8 @@ RUN set -x; \
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
         mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
-#           /tmp/oca-repos/bank-statement-import/account_statement_import_file \
-#           /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
+#           /tmp/oca-repos/bank-statement-import/account_statement_import_file \ # https://github.com/OCA/bank-statement-import/pull/575
+#           /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \ # https://github.com/OCA/bank-statement-import/pull/577
            /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/crm.git /tmp/oca-repos/crm &&\
 #        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
@@ -98,8 +98,12 @@ RUN set -x; \
         mv /tmp/oca-repos/project/project_task_default_stage \
             /tmp/oca-repos/project/project_template \
            /opt/odoo/additional_addons/ &&\
+        # Until migrated to OCA (https://github.com/OCA/server-auth/pull/482)
+        git clone -b 16_mig_password_security --depth 1 https://github.com/onesteinbv/server-auth.git /tmp/oca-repos/server-auth &&\
+        mv /tmp/oca-repos/server-auth/password_security \
+           /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/server-auth.git /tmp/oca-repos/server-auth &&\
-#        mv /tmp/oca-repos/server-auth/password_security \
+#        mv /tmp/oca-repos/server-auth/password_security \ # https://github.com/OCA/server-auth/pull/482
 #           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/server-brand.git /tmp/oca-repos/server-brand &&\
         mv /tmp/oca-repos/server-brand/disable_odoo_online \
@@ -113,15 +117,20 @@ RUN set -x; \
         git clone -b 16.0 --depth 1 https://github.com/OCA/server-ux.git /tmp/oca-repos/server-ux &&\
         mv /tmp/oca-repos/server-ux/server_action_mass_edit \
            /opt/odoo/additional_addons/ &&\
+        # Until migrated to OCA (https://github.com/OCA/social/pull/1091)
+        git clone -b 16.0-mig-mail_tracking --depth 1 https://github.com/adhoc-dev/social.git /tmp/oca-repos/social-adhoc &&\
+        mv /tmp/oca-repos/social-adhoc/mail_tracking \
+           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/social.git /tmp/oca-repos/social &&\
         mv /tmp/oca-repos/social/mail_debrand \
-#           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1029
+#           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1091
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
-        mv /tmp/oca-repos/web/web_environment_ribbon \
-#           /tmp/oca-repos/web/web_responsive \
-#           /tmp/oca-repos/web/web_no_bubble \
+        mv /tmp/oca-repos/web/web_chatter_position \
+           /tmp/oca-repos/web/web_environment_ribbon \
            /tmp/oca-repos/web/web_refresher \
+           /tmp/oca-repos/web/web_responsive \
+#           /tmp/oca-repos/web/web_no_bubble \
            /tmp/oca-repos/web/web_theme_classic \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\

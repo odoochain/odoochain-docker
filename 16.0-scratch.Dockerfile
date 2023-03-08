@@ -56,8 +56,8 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/account-financial-tools.git \
         /tmp/oca-repos/account-financial-tools \
-#    && mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \ # https://github.com/OCA/account-financial-tools/pull/1526
-    && mv /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
+    && mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
+        /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #        /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
         /tmp/oca-repos/account-financial-tools/account_usability \
         /newroot/opt/odoo/additional_addons/ \
@@ -66,22 +66,9 @@ RUN mkdir -p \
 #        /tmp/oca-repos/account-invoicing \
 #    && mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #        /newroot/opt/odoo/additional_addons/ \
-    # Until migrated to OCA (https://github.com/OCA/account-reconcile/pull/500)
-     && git clone -b 16.0-add-account_reconcile_oca --depth 1 \
-        https://github.com/tegin/account-reconcile.git \
-        /tmp/oca-repos/account-reconcile \
-     && mv /tmp/oca-repos/account-reconcile/account_reconcile_oca \
-        /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/account-reconcile.git \
 #        /tmp/oca-repos/account-reconcile \
-    # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/535)
-     && git clone -b 16.0-mig-account_statement_import --depth 1 \
-        https://github.com/sonhd91/bank-statement-import.git \
-        /tmp/oca-repos/bank-statement-import \
-     && mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
-         /tmp/oca-repos/bank-statement-import/account_statement_import_file \
-         /newroot/opt/odoo/additional_addons/ \
 #    && git clone -b 16.0 --depth 1 \
 #        https://github.com/OCA/bank-statement-import.git \
 #        /tmp/oca-repos/bank-statement-import \
@@ -144,8 +131,9 @@ RUN mkdir -p \
     && git clone -b 16.0 --depth 1 \
         https://github.com/OCA/web.git \
         /tmp/oca-repos/web \
-    && mv /tmp/oca-repos/web/web_environment_ribbon \
-#        /tmp/oca-repos/web/web_responsive \
+    && mv /tmp/oca-repos/web/web_chatter_position \
+        /tmp/oca-repos/web/web_environment_ribbon \
+        /tmp/oca-repos/web/web_responsive \
 #        /tmp/oca-repos/web/web_no_bubble \
         /tmp/oca-repos/web/web_refresher \
         /tmp/oca-repos/web/web_theme_classic \
