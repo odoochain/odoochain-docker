@@ -57,7 +57,7 @@ RUN set -x; \
         mkdir -p /tmp/oca-repos/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-tools.git /tmp/oca-repos/account-financial-tools &&\
         mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
-        mv /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
+           /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #           /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
            /tmp/oca-repos/account-financial-tools/account_usability \
            /opt/odoo/additional_addons/ &&\
