@@ -61,6 +61,7 @@ RUN set -x; \
 #           /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
            /tmp/oca-repos/account-financial-tools/account_usability \
            /opt/odoo/additional_addons/ &&\
+#        https://github.com/OCA/account-invoicing/pull/1419
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/account-invoicing.git /tmp/oca-repos/account-invoicing &&\
 #        mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #           /opt/odoo/additional_addons/ &&\
@@ -71,18 +72,10 @@ RUN set -x; \
         git clone -b 16.0 --depth 1 https://github.com/OCA/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
         mv /tmp/oca-repos/account-reconcile/account_statement_base \
            /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/575)
-        git clone -b 16-mig-account_statement_import_file --depth 1 https://github.com/akretion/bank-statement-import.git /tmp/oca-repos/bank-statement-import-ak1 &&\
-        mv /tmp/oca-repos/bank-statement-import-ak1/account_statement_import_file \
-           /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/bank-statement-import/pull/577)
-        git clone -b 16-mig-account_statement_import_ofx --depth 1 https://github.com/akretion/bank-statement-import.git /tmp/oca-repos/bank-statement-import-ak2 &&\
-        mv /tmp/oca-repos/bank-statement-import-ak2/account_statement_import_ofx \
-           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
         mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
-#           /tmp/oca-repos/bank-statement-import/account_statement_import_file \ # https://github.com/OCA/bank-statement-import/pull/575
-#           /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \ # https://github.com/OCA/bank-statement-import/pull/577
+           /tmp/oca-repos/bank-statement-import/account_statement_import_file \
+           /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
            /opt/odoo/additional_addons/ &&\
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/crm.git /tmp/oca-repos/crm &&\
 #        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
@@ -125,12 +118,16 @@ RUN set -x; \
         mv /tmp/oca-repos/social/mail_debrand \
 #           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1091
            /opt/odoo/additional_addons/ &&\
+        # Until migrated to OCA (https://github.com/OCA/web/pull/2462)
+        git clone -b 16_mig_web_no_bubble --depth 1 https://github.com/onesteinbv/web.git /tmp/oca-repos/web-onestein &&\
+        mv /tmp/oca-repos/web-onestein/web_no_bubble \
+           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
         mv /tmp/oca-repos/web/web_chatter_position \
            /tmp/oca-repos/web/web_environment_ribbon \
            /tmp/oca-repos/web/web_refresher \
            /tmp/oca-repos/web/web_responsive \
-#           /tmp/oca-repos/web/web_no_bubble \
+#           /tmp/oca-repos/web/web_no_bubble \ # https://github.com/OCA/social/pull/2462
            /tmp/oca-repos/web/web_theme_classic \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\
