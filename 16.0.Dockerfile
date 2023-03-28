@@ -118,16 +118,12 @@ RUN set -x; \
         mv /tmp/oca-repos/social/mail_debrand \
 #           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1091
            /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/web/pull/2462)
-        git clone -b 16_mig_web_no_bubble --depth 1 https://github.com/onesteinbv/web.git /tmp/oca-repos/web-onestein &&\
-        mv /tmp/oca-repos/web-onestein/web_no_bubble \
-           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
         mv /tmp/oca-repos/web/web_chatter_position \
            /tmp/oca-repos/web/web_environment_ribbon \
            /tmp/oca-repos/web/web_refresher \
            /tmp/oca-repos/web/web_responsive \
-#           /tmp/oca-repos/web/web_no_bubble \ # https://github.com/OCA/social/pull/2462
+           /tmp/oca-repos/web/web_no_bubble \
            /tmp/oca-repos/web/web_theme_classic \
            /opt/odoo/additional_addons/ &&\
         rm -rf /tmp/oca-repos/ &&\

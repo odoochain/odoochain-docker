@@ -134,7 +134,7 @@ RUN mkdir -p \
     && mv /tmp/oca-repos/web/web_chatter_position \
         /tmp/oca-repos/web/web_environment_ribbon \
         /tmp/oca-repos/web/web_responsive \
-#        /tmp/oca-repos/web/web_no_bubble \
+        /tmp/oca-repos/web/web_no_bubble \
         /tmp/oca-repos/web/web_refresher \
         /tmp/oca-repos/web/web_theme_classic \
         /newroot/opt/odoo/additional_addons/ \
