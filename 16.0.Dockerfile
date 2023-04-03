@@ -65,12 +65,9 @@ RUN set -x; \
 #        git clone -b 16.0 --depth 1 https://github.com/OCA/account-invoicing.git /tmp/oca-repos/account-invoicing &&\
 #        mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #           /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/account-reconcile/pull/500)
-        git clone -b 16.0-add-account_reconcile_oca --depth 1 https://github.com/tegin/account-reconcile.git /tmp/oca-repos/account-reconcile-tegin &&\
-        mv /tmp/oca-repos/account-reconcile-tegin/account_reconcile_oca \
-           /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
         mv /tmp/oca-repos/account-reconcile/account_statement_base \
+           /tmp/oca-repos/account-reconcile/account_reconcile_oca \
            /opt/odoo/additional_addons/ &&\
         git clone -b 16.0 --depth 1 https://github.com/OCA/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
         mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
