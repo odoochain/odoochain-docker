@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye AS builder
+FROM python:3.11-slim-bullseye AS builder
 RUN set -x; \
         apt-get update &&\
         apt-get install -y --no-install-recommends build-essential libldap2-dev libpq-dev libsasl2-dev &&\
@@ -13,7 +13,7 @@ RUN set -x; \
         pip wheel --wheel-dir=/svc/wheels astor openupgradelib phonenumbers python-stdnum>=1.18 PyYAML zxcvbn
 
 
-FROM python:3.10-slim-bullseye AS final
+FROM python:3.11-slim-bullseye AS final
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PGDATABASE=odoo
