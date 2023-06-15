@@ -30,7 +30,13 @@ export PGUSER=$value
 check_config "db_password" "$PASSWORD"
 export PGPASSWORD=$value
 
-if ! psql -l | grep $PGDATABASE; then
+echo "waiting until postgres is listening at ${PGHOST}..."
+while true; do
+    psql --list > /dev/null 2>&1 && break
+    sleep 1
+done
+
+if ! psql --list 2> /dev/null | grep $PGDATABASE > /dev/null 2>&1; then
   	echo "Database $PGDATABASE does not exist"
   	DB_ARGS+=("--load-language")
   	DB_ARGS+=("fr_FR")
