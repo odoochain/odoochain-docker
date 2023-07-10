@@ -36,7 +36,7 @@ while true; do
     sleep 1
 done
 
-if ! psql --list 2> /dev/null | grep $PGDATABASE > /dev/null 2>&1; then
+if ! psql --list --no-align --tuples-only 2> /dev/null | grep ^$PGDATABASE\| > /dev/null 2>&1; then
   	echo "Database $PGDATABASE does not exist"
   	DB_ARGS+=("--load-language")
   	DB_ARGS+=("fr_FR")
