@@ -47,75 +47,72 @@ COPY ./ssh_known_git_hosts /root/.ssh/known_hosts
 RUN set -x; \
         useradd --create-home --home-dir /opt/odoo --no-log-init odoo &&\
         /bin/bash -c "mkdir -p /opt/odoo/{etc,odoo,additional_addons,private_addons,data,private}" &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/OCB.git /opt/odoo/odoo &&\
-        rm -rf /opt/odoo/odoo/.git &&\
+        curl -L https://github.com/OCA/OCB/tarball/16.0 | tar -xzC /opt/odoo/odoo --strip-components 1 &&\
         find /opt/odoo/odoo/addons/*/i18n/ /opt/odoo/odoo/odoo/addons/base/i18n/ -type f -not -name 'fr.po' -delete &&\
         chown -R odoo:odoo /opt/odoo
 
 # Install Odoo OCA default dependencies - Commented modules do not exist yet
 RUN set -x; \
         mkdir -p /tmp/oca-repos/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/account-financial-tools.git /tmp/oca-repos/account-financial-tools &&\
+        curl -L https://github.com/OCA/account-financial-tools/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="account-financial-tools" --strip-components 1 &&\
         mv /tmp/oca-repos/account-financial-tools/account_lock_date_update \
            /tmp/oca-repos/account-financial-tools/account_move_name_sequence \
 #           /tmp/oca-repos/account-financial-tools/account_reconcile_show_boolean \
            /tmp/oca-repos/account-financial-tools/account_usability \
            /opt/odoo/additional_addons/ &&\
 #        https://github.com/OCA/account-invoicing/pull/1419
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/account-invoicing.git /tmp/oca-repos/account-invoicing &&\
+#        curl -L https://github.com/OCA/account-invoicing/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="account-invoicing" --strip-components 1 &&\
 #        mv /tmp/oca-repos/account-invoicing/sale_timesheet_invoice_description \
 #           /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/account-reconcile.git /tmp/oca-repos/account-reconcile &&\
+        curl -L https://github.com/OCA/account-reconcile/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="account-reconcile" --strip-components 1 &&\
         mv /tmp/oca-repos/account-reconcile/account_statement_base \
            /tmp/oca-repos/account-reconcile/account_reconcile_oca \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/bank-statement-import.git /tmp/oca-repos/bank-statement-import &&\
+        curl -L https://github.com/OCA/bank-statement-import/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="bank-statement-import" --strip-components 1 &&\
         mv /tmp/oca-repos/bank-statement-import/account_statement_import_base \
            /tmp/oca-repos/bank-statement-import/account_statement_import_file \
            /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
            /opt/odoo/additional_addons/ &&\
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/crm.git /tmp/oca-repos/crm &&\
+#        curl -L https://github.com/OCA/crm/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="crm" --strip-components 1 &&\
 #        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/l10n-france.git /tmp/oca-repos/l10n-france &&\
+        curl -L https://github.com/OCA/l10n-france/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="l10n-france" --strip-components 1 &&\
         mv /tmp/oca-repos/l10n-france/l10n_fr_siret \
            /tmp/oca-repos/l10n-france/l10n_fr_siret_lookup \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/partner-contact.git /tmp/oca-repos/partner-contact &&\
+        curl -L https://github.com/OCA/partner-contact/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="partner-contact" --strip-components 1 &&\
         mv /tmp/oca-repos/partner-contact/partner_disable_gravatar \
            /tmp/oca-repos/partner-contact/partner_firstname \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/project.git /tmp/oca-repos/project &&\
+        curl -L https://github.com/OCA/project/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="project" --strip-components 1 &&\
         mv /tmp/oca-repos/project/project_task_default_stage \
             /tmp/oca-repos/project/project_template \
            /opt/odoo/additional_addons/ &&\
         # Until migrated to OCA (https://github.com/OCA/server-auth/pull/482)
-        git clone -b 16_mig_password_security --depth 1 https://github.com/onesteinbv/server-auth.git /tmp/oca-repos/server-auth &&\
+        curl -L https://github.com/onesteinbv/server-auth/tarball/16_mig_password_security | tar -xzC /tmp/oca-repos/ --one-top-level="server-auth" --strip-components 1 &&\
+#       curl -L https://github.com/OCA/server-auth/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-auth" --strip-components 1 &&\
         mv /tmp/oca-repos/server-auth/password_security \
            /opt/odoo/additional_addons/ &&\
-#        git clone -b 16.0 --depth 1 https://github.com/OCA/server-auth.git /tmp/oca-repos/server-auth &&\
-#        mv /tmp/oca-repos/server-auth/password_security \ # https://github.com/OCA/server-auth/pull/482
-#           /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/server-brand.git /tmp/oca-repos/server-brand &&\
+        curl -L https://github.com/OCA/server-brand/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-brand" --strip-components 1 &&\
         mv /tmp/oca-repos/server-brand/disable_odoo_online \
            /tmp/oca-repos/server-brand/portal_odoo_debranding \
            /tmp/oca-repos/server-brand/remove_odoo_enterprise \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/server-tools.git /tmp/oca-repos/server-tools &&\
+        curl -L https://github.com/OCA/server-tools/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-tools" --strip-components 1 &&\
         mv /tmp/oca-repos/server-tools/base_view_inheritance_extension \
            /tmp/oca-repos/server-tools/module_change_auto_install \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/server-ux.git /tmp/oca-repos/server-ux &&\
+        curl -L https://github.com/OCA/server-ux/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-ux" --strip-components 1 &&\
         mv /tmp/oca-repos/server-ux/server_action_mass_edit \
            /opt/odoo/additional_addons/ &&\
         # Until migrated to OCA (https://github.com/OCA/social/pull/1091)
-        git clone -b 16.0-mig-mail_tracking --depth 1 https://github.com/adhoc-dev/social.git /tmp/oca-repos/social-adhoc &&\
+        curl -L https://github.com/adhoc-dev/social/tarball/16.0-mig-mail_tracking | tar -xzC /tmp/oca-repos/ --one-top-level="social-adhoc" --strip-components 1 &&\
         mv /tmp/oca-repos/social-adhoc/mail_tracking \
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/social.git /tmp/oca-repos/social &&\
+        curl -L https://github.com/OCA/social/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="social" --strip-components 1 &&\
         mv /tmp/oca-repos/social/mail_debrand \
 #           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1091
            /opt/odoo/additional_addons/ &&\
-        git clone -b 16.0 --depth 1 https://github.com/OCA/web.git /tmp/oca-repos/web &&\
+        curl -L https://github.com/OCA/web/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="web" --strip-components 1 &&\
         mv /tmp/oca-repos/web/web_chatter_position \
            /tmp/oca-repos/web/web_environment_ribbon \
            /tmp/oca-repos/web/web_refresher \
