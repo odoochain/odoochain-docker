@@ -11,8 +11,9 @@ include:
 - template: Security/Secret-Detection.gitlab-ci.yml
 container_scanning:
   variables:
-    DOCKER_IMAGE: "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"
-    DOCKERFILE_PATH: "$CI_COMMIT_BRANCH.Dockerfile"
+    CS_IMAGE: "$CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH"
+    CS_DOCKERFILE_PATH: "$CI_COMMIT_BRANCH.Dockerfile"
+    GIT_STRATEGY: fetch
 docker-build-10.0:
   image: docker:24
   stage: build
