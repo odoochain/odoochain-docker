@@ -104,13 +104,9 @@ RUN set -x; \
         curl -L https://github.com/OCA/server-ux/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-ux" --strip-components 1 &&\
         mv /tmp/oca-repos/server-ux/server_action_mass_edit \
            /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/social/pull/1091)
-        curl -L https://github.com/adhoc-dev/social/tarball/16.0-mig-mail_tracking | tar -xzC /tmp/oca-repos/ --one-top-level="social-adhoc" --strip-components 1 &&\
-        mv /tmp/oca-repos/social-adhoc/mail_tracking \
-           /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/social/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="social" --strip-components 1 &&\
         mv /tmp/oca-repos/social/mail_debrand \
-#           /tmp/oca-repos/social/mail_tracking \ # https://github.com/OCA/social/pull/1091
+           /tmp/oca-repos/social/mail_tracking \ 
            /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/web/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="web" --strip-components 1 &&\
         mv /tmp/oca-repos/web/web_chatter_position \
