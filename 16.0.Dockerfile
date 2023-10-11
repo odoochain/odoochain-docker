@@ -87,9 +87,7 @@ RUN set -x; \
         mv /tmp/oca-repos/project/project_task_default_stage \
             /tmp/oca-repos/project/project_template \
            /opt/odoo/additional_addons/ &&\
-        # Until migrated to OCA (https://github.com/OCA/server-auth/pull/482)
-        curl -L https://github.com/onesteinbv/server-auth/tarball/16_mig_password_security | tar -xzC /tmp/oca-repos/ --one-top-level="server-auth" --strip-components 1 &&\
-#       curl -L https://github.com/OCA/server-auth/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-auth" --strip-components 1 &&\
+        curl -L https://github.com/OCA/server-auth/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-auth" --strip-components 1 &&\
         mv /tmp/oca-repos/server-auth/password_security \
            /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/server-brand/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="server-brand" --strip-components 1 &&\
