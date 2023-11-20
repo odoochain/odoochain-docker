@@ -73,8 +73,10 @@ RUN set -x; \
            /tmp/oca-repos/bank-statement-import/account_statement_import_file \
            /tmp/oca-repos/bank-statement-import/account_statement_import_ofx \
            /opt/odoo/additional_addons/ &&\
+        # Until PR merged into OCA (https://github.com/OCA/crm/pull/531)
+        curl -L https://github.com/lefilament/crm/tarball/16.0-mig-crm_stage_probability | tar -xzC /tmp/oca-repos/ --one-top-level="crm" --strip-components 1 &&\
 #        curl -L https://github.com/OCA/crm/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="crm" --strip-components 1 &&\
-#        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
+        mv /tmp/oca-repos/crm/crm_stage_probability /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/l10n-france/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="l10n-france" --strip-components 1 &&\
         mv /tmp/oca-repos/l10n-france/l10n_fr_siret \
            /tmp/oca-repos/l10n-france/l10n_fr_siret_lookup \
@@ -104,7 +106,7 @@ RUN set -x; \
            /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/social/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="social" --strip-components 1 &&\
         mv /tmp/oca-repos/social/mail_debrand \
-           /tmp/oca-repos/social/mail_tracking \ 
+           /tmp/oca-repos/social/mail_tracking \
            /opt/odoo/additional_addons/ &&\
         curl -L https://github.com/OCA/web/tarball/16.0 | tar -xzC /tmp/oca-repos/ --one-top-level="web" --strip-components 1 &&\
         mv /tmp/oca-repos/web/web_chatter_position \
