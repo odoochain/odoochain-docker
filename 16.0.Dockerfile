@@ -3,7 +3,7 @@ RUN set -x; \
         apt-get update &&\
         apt-get install -y --no-install-recommends build-essential libldap2-dev libpq-dev libsasl2-dev &&\
         pip install wheel &&\
-        pip wheel --wheel-dir=/svc/wheels -r https://raw.githubusercontent.com/oca/OCB/16.0/requirements.txt &&\
+        pip wheel --wheel-dir=/svc/wheels -r https://gitee.com/odoochain/odoochain/raw/16.0-chain/requirements.txt &&\
         # astor required by base_view_inheritance_extension
         # openupgradelib required for OCA module migration from one version to another
         # phonenumbers required by phone_validation
@@ -37,7 +37,7 @@ RUN set -x; \
         rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
 COPY --from=builder /svc /svc
-RUN pip3 install --no-index --find-links=/svc/wheels -r https://raw.githubusercontent.com/oca/OCB/16.0/requirements.txt &&\
+RUN pip3 install --no-index --find-links=/svc/wheels -r https://gitee.com/odoochain/odoochain/raw/16.0-chain/requirements.txt &&\
         pip3 install -U --no-index --find-links=/svc/wheels astor openupgradelib phonenumbers python-stdnum>=1.18 PyYAML zxcvbn
 
 # Add Git Known Hosts
