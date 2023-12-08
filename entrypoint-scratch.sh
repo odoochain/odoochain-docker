@@ -65,7 +65,7 @@ return_code=$?
 [ "$return_code" -gt 10 ] && exit 1
 if [ "$return_code" == 1 ]; then
   	echo "info: init: database $PGDATABASE does not exist"
-  	DB_ARGS="${DB_ARGS} --load-language fr_FR"
+  	DB_ARGS="${DB_ARGS} --load-language zh_CN"
 fi
 
 case "$1" in
